@@ -1,10 +1,10 @@
 package ee.helmes.assignment.repository;
 
-import ee.helmes.assignment.model.Sector;
+import ee.helmes.assignment.model.Visitor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RepositorySector extends JpaRepository<Sector, Long> {
+public interface VisitorRepository extends JpaRepository<Visitor, Long> {
 
 }
