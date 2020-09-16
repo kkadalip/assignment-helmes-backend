@@ -3,6 +3,7 @@ package ee.helmes.assignment.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -21,5 +22,11 @@ public class Sector {
 	@Column(name = "name")
 	private String name;
 
-	// TODO parent/child sectors
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_sector_id")
+	private Sector parentSector;
+
+	@OneToMany(mappedBy = "parentSector")
+	@OrderBy("name ASC")
+	private List<Sector> childSectors;
 }

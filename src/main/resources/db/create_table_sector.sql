@@ -1,7 +1,6 @@
 CREATE TABLE sector
 (
-	id   BIGSERIAL NOT NULL,
-
-	name TEXT
-	
+	id   IDENTITY NOT NULL, --BIGSERIAL
+	name VARCHAR(255), --TEXT
+	parent_sector_id BIGINT REFERENCES sector(id)
 )
