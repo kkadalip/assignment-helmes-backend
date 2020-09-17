@@ -17,13 +17,13 @@ public class SectorController {
 	private final VisitorService visitorService;
 	private final SectorService sectorService;
 
-	@CrossOrigin //NOSONAR
+	@CrossOrigin
 	@GetMapping("/api/sectors")
 	public List<SectorDTO> findAllSectors() {
 		return sectorService.findAllRootSectors().stream().map(ConvertUtil::convertToDto).collect(Collectors.toList());
 	}
 
-	@CrossOrigin //NOSONAR
+	@CrossOrigin
 	@GetMapping("/api/visitors")
 	public List<Visitor> findAllVisitors() {
 		return visitorService.findAll();

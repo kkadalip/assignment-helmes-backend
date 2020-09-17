@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 
 public class ConvertUtil {
 
+	private ConvertUtil() {
+	}
+
 	public static SectorDTO convertToDto(Sector sector) {
 		if (sector == null) {
 			return null;

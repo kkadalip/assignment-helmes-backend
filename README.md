@@ -50,7 +50,7 @@
 ######	NB! Port 8090 will be used if "--port=" variable is not provided
 ##### [OPTION 4] Run in IDE
      Run Application.java (create run configuration for it if necessary). 
-     Open http://localhost:8080/ or http://localhost:8080/api/sectors etc
+     Open http://localhost:8090/ or http://localhost:8090/api/sectors etc
 
 ### Configuration files    
     All environments:
