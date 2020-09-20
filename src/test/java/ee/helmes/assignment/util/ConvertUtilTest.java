@@ -3,9 +3,7 @@ package ee.helmes.assignment.util;
 import ee.helmes.assignment.dto.SectorDTO;
 import ee.helmes.assignment.model.Sector;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Convert;
 
-import javax.persistence.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,7 +29,7 @@ class ConvertUtilTest {
 				.build()
 		);
 		parentSector.setChildSectors(childSectors);
-		SectorDTO sectorDTO = ConvertUtil.convertToDto(parentSector);
+		SectorDTO sectorDTO = ConvertUtil.convertSectorModelToDto(parentSector);
 		assertNotNull(sectorDTO.getChildSectors());
 		assertEquals(2, sectorDTO.getChildSectors().size());
 	}

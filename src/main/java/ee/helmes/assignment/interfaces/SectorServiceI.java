@@ -8,4 +8,6 @@ public interface SectorServiceI {
 
 	List<Sector> findAllRootSectors();
 
+	List<Sector> findByIds(List<Long> ids);
+
 }

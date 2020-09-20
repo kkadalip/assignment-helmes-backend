@@ -1,7 +1,7 @@
 package ee.helmes.assignment.util;
 
-import ee.helmes.assignment.dto.SectorDTO;
-import ee.helmes.assignment.model.Sector;
+import ee.helmes.assignment.dto.*;
+import ee.helmes.assignment.model.*;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
@@ -12,12 +12,12 @@ public class ConvertUtil {
 	private ConvertUtil() {
 	}
 
-	public static SectorDTO convertToDto(Sector sector) {
+	public static SectorDTO convertSectorModelToDto(Sector sector) {
 		if (sector == null) {
 			return null;
 		}
 		List<SectorDTO> childSectors = !CollectionUtils.isEmpty(sector.getChildSectors()) ?
-			sector.getChildSectors().stream().map(ConvertUtil::convertToDto).collect(Collectors.toList()) : new ArrayList<>();
+			sector.getChildSectors().stream().map(ConvertUtil::convertSectorModelToDto).collect(Collectors.toList()) : new ArrayList<>();
 		return SectorDTO.builder()
 			.id(sector.getId())
 			.name(sector.getName())

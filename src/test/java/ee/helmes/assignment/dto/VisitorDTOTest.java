@@ -43,6 +43,11 @@ class VisitorDTOTest {
 		return Validation.buildDefaultValidatorFactory().getValidator().validate(visitorDTO);
 	}
 
+	private List<Long> getValidMockSectorDTOs() {
+		return Arrays.asList(1L, 4L);
+	}
+
+	/*
 	private List<SectorDTO> getValidMockSectorDTOs() {
 		SectorDTO validSector = SectorDTO.builder()
 			.id(4)
@@ -50,6 +55,7 @@ class VisitorDTOTest {
 			.build();
 		return Collections.singletonList(validSector);
 	}
+	 */
 
 	@Test
 	void testInvalidDTOnoSectors() {

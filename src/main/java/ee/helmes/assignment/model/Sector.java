@@ -1,5 +1,6 @@
 package ee.helmes.assignment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,10 +10,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "sector")
-@Data
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Sector {
 
 	@Id
@@ -22,11 +24,13 @@ public class Sector {
 	@Column(name = "name")
 	private String name;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_sector_id")
 	private Sector parentSector;
 
-	@OneToMany(mappedBy = "parentSector")
+	@JsonIgnore
+	@OneToMany(mappedBy = "parentSector", fetch = FetchType.LAZY)
 	@OrderBy("name ASC")
 	private List<Sector> childSectors;
 }

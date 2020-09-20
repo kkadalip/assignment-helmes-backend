@@ -3,7 +3,6 @@ package ee.helmes.assignment;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.helmes.assignment.dto.SectorDTO;
-import ee.helmes.assignment.repository.SectorRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +27,6 @@ class IntegrationTests {
 
 	@Autowired
 	ObjectMapper objectMapper;
-
-	@Autowired
-	private SectorRepository sectorRepository;
 
 	@Test
 	void getQueryWorks() throws Exception {

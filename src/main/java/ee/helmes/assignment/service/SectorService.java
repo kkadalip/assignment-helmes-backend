@@ -17,4 +17,9 @@ public class SectorService implements SectorServiceI {
 	public List<Sector> findAllRootSectors() {
 		return sectorRepository.findAllByParentSectorIsNull();
 	}
+
+	public List<Sector> findByIds(List<Long> ids) {
+		return sectorRepository.findByIds(ids);
+	}
+
 }
