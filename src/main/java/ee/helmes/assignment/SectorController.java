@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -35,7 +35,7 @@ public class SectorController {
 
 	public Visitor convertVisitorDtoToModel(VisitorDTO visitorDTO) {
 		List<Long> sectorIds = visitorDTO.getSectors();
-		List<Sector> selectedSectors = sectorService.findByIds(sectorIds);
+		List<Sector> selectedSectors = sectorIds != null ? sectorService.findByIds(sectorIds) : new ArrayList<>();
 		return Visitor.builder()
 			.id(visitorDTO.getId())
 			.username(visitorDTO.getUsername())
