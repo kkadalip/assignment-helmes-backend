@@ -10,6 +10,63 @@ import static org.junit.jupiter.api.Assertions.*;
 class VisitorDTOTest {
 
 	@Test
+	void testInvalidDTOusernameMissing() {
+		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder()
+			.id(111)
+			.username("")
+			.agreedToTerms(true)
+			.sectors(getValidMockSectorDTOs())
+			.build();
+		Set<ConstraintViolation<VisitorDTO>> violations = validate(visitorDTOnoSectors);
+		assertFalse(violations.isEmpty());
+		assertEquals(1L, violations.size());
+		String expectedMessage = getValidationMessage(violations.stream().iterator().next());
+		assertEquals("VisitorDTO.username Username cannot be empty", expectedMessage);
+	}
+
+	@Test
+	void testInvalidDTOusernameEmpty() {
+		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder()
+			.id(111)
+			.username("")
+			.agreedToTerms(true)
+			.sectors(getValidMockSectorDTOs())
+			.build();
+		Set<ConstraintViolation<VisitorDTO>> violations = validate(visitorDTOnoSectors);
+		assertFalse(violations.isEmpty());
+		assertEquals(1L, violations.size());
+		String expectedMessage = getValidationMessage(violations.stream().iterator().next());
+		assertEquals("VisitorDTO.username Username cannot be empty", expectedMessage);
+	}
+
+	@Test
+	void testInvalidDTOagreedToTermsFalse() {
+		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder()
+			.id(111)
+			.username("aaa")
+			.agreedToTerms(false)
+			.sectors(getValidMockSectorDTOs())
+			.build();
+		Set<ConstraintViolation<VisitorDTO>> violations = validate(visitorDTOnoSectors);
+		assertFalse(violations.isEmpty());
+		assertEquals(1L, violations.size());
+		String expectedMessage = getValidationMessage(violations.stream().iterator().next());
+		assertEquals("VisitorDTO.agreedToTerms You have to agree to terms", expectedMessage);
+	}
+
+	private Set<ConstraintViolation<VisitorDTO>> validate(VisitorDTO visitorDTO) {
+		return Validation.buildDefaultValidatorFactory().getValidator().validate(visitorDTO);
+	}
+
+	private List<SectorDTO> getValidMockSectorDTOs() {
+		SectorDTO validSector = SectorDTO.builder()
+			.id(4)
+			.name("Construction materials")
+			.build();
+		return Collections.singletonList(validSector);
+	}
+
+	@Test
 	void testInvalidDTOnoSectors() {
 		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder()
 			.id(111)

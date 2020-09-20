@@ -20,6 +20,6 @@ public class VisitorDTO {
 	private boolean agreedToTerms;
 	@NotNull(message = "Selected sectors can not be empty")
 	@NotEmpty
-	List<Long> sectors;
+	List<SectorDTO> sectors;
 
 }
