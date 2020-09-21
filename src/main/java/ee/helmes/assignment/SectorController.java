@@ -7,6 +7,7 @@ import ee.helmes.assignment.util.ConvertUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.validation.Valid;
 import java.util.*;
@@ -29,18 +30,28 @@ public class SectorController {
 	@CrossOrigin
 	@PostMapping("/api/save")
 	public void saveVisitor(@Valid @RequestBody VisitorDTO visitorDTO) {
-		log.info("Visitor is " + visitorDTO);
-		visitorService.save(convertVisitorDtoToModel(visitorDTO));
+		String sessionId = getSessionId();
+		Visitor existingVisitor = visitorService.findBySessionId(sessionId);
+		if (existingVisitor != null) {
+			existingVisitor.setUsername(visitorDTO.getUsername());
+			List<Sector> selectedSectors = sectorService.findByIds(visitorDTO.getSectors());
+			existingVisitor.setSelectedSectors(selectedSectors);
+			existingVisitor.setAgreedToTerms(visitorDTO.isAgreedToTerms());
+			visitorService.save(existingVisitor);
+		}
+		else {
+			visitorService.save(convertVisitorDtoToModel(visitorDTO, sessionId));
+		}
 	}
 
-	public Visitor convertVisitorDtoToModel(VisitorDTO visitorDTO) {
+	public Visitor convertVisitorDtoToModel(VisitorDTO visitorDTO, String sessionId) {
 		List<Long> sectorIds = visitorDTO.getSectors();
 		List<Sector> selectedSectors = sectorIds != null ? sectorService.findByIds(sectorIds) : new ArrayList<>();
 		return Visitor.builder()
-			.id(visitorDTO.getId())
 			.username(visitorDTO.getUsername())
 			.agreedToTerms(visitorDTO.isAgreedToTerms())
 			.selectedSectors(selectedSectors)
+			.sessionId(sessionId)
 			.build();
 	}
 
@@ -49,6 +60,10 @@ public class SectorController {
 	@GetMapping("/api/visitors")
 	public List<Visitor> findAllVisitors() {
 		return visitorService.findAll();
+	}
+
+	private static String getSessionId() {
+		return RequestContextHolder.currentRequestAttributes().getSessionId();
 	}
 
 }

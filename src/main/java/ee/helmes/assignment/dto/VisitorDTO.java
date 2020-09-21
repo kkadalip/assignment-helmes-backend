@@ -22,4 +22,5 @@ public class VisitorDTO {
 	@NotEmpty
 	List<Long> sectors;
 
+	String sessionId;
 }

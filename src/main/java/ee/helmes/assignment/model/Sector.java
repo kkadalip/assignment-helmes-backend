@@ -10,8 +10,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "sector")
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

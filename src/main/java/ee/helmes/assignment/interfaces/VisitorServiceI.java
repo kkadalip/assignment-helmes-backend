@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface VisitorServiceI {
 
-	List<Visitor> findAll();
-
 	Visitor save(Visitor visitor);
 
-	List<Visitor> findBySessionId();
+	List<Visitor> findAll();
+
+	Visitor findBySessionId(String username);
 
 }

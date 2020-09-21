@@ -40,6 +40,7 @@ repositories {
 dependencies {
 	// SPRING-BOOT:
 	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter-security')
 	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
 	implementation('org.springframework.boot:spring-boot-starter-actuator')
 	developmentOnly('org.springframework.boot:spring-boot-devtools')
@@ -52,8 +53,6 @@ dependencies {
 	testAnnotationProcessor('org.projectlombok:lombok:1.18.12')
 	// DATABASE:
 	runtimeOnly('com.h2database:h2')
-//	implementation('org.postgresql:postgresql:42.2.12')
-//	implementation('com.vladmihalcea:hibernate-types-52:2.9.12')
 	// DATABASE CHANGELOGS:
 	implementation('org.liquibase:liquibase-core:4.0.0')
 	// UTILS:
@@ -62,12 +61,12 @@ dependencies {
 	// implementation('commons-io:commons-io:2.7')
 	// LOGGING:
 	implementation('log4j:log4j:1.2.17')
-	implementation('org.codehaus.groovy:groovy-all:3.0.4')
 	implementation('org.slf4j:slf4j-api:1.7.30')
-	implementation('org.springdoc:springdoc-openapi-ui:1.4.0')
 	// CONFIGURATION PROCESSOR:
 	implementation('org.springframework.boot:spring-boot-configuration-processor')
 	annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
+	// VALIDATIONS:
+	compile('javax.validation:validation-api:2.0.1.Final')
 	// TESTS:
 	testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.0-M1')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')

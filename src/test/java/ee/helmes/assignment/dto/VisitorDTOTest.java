@@ -47,16 +47,6 @@ class VisitorDTOTest {
 		return Arrays.asList(1L, 4L);
 	}
 
-	/*
-	private List<SectorDTO> getValidMockSectorDTOs() {
-		SectorDTO validSector = SectorDTO.builder()
-			.id(4)
-			.name("Construction materials")
-			.build();
-		return Collections.singletonList(validSector);
-	}
-	 */
-
 	@Test
 	void testInvalidDTOnoSectors() {
 		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder().id(111).username("aaa").agreedToTerms(true).sectors(Collections.emptyList()).build();

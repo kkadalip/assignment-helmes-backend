@@ -1,6 +1,5 @@
 package ee.helmes.assignment.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
@@ -11,8 +10,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "visitor")
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,4 +33,7 @@ public class Visitor {
 		inverseJoinColumns = @JoinColumn(name = "sector_id")
 	)
 	List<Sector> selectedSectors;
+
+	@Column(name = "session_id")
+	String sessionId;
 }
