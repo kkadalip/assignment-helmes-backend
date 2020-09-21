@@ -28,6 +28,17 @@ public class SectorController {
 	}
 
 	@CrossOrigin
+	@GetMapping("/api/session")
+	public VisitorDTO findExistingSession() {
+		String sessionId = getSessionId();
+		Visitor existingVisitor = visitorService.findBySessionId(sessionId);
+		if (existingVisitor != null) {
+			return ConvertUtil.convertVisitorModelToDto(existingVisitor, sessionId);
+		}
+		return null;
+	}
+
+	@CrossOrigin
 	@PostMapping("/api/save")
 	public void saveVisitor(@Valid @RequestBody VisitorDTO visitorDTO) {
 		String sessionId = getSessionId();

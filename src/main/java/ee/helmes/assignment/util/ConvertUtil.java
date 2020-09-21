@@ -24,4 +24,18 @@ public class ConvertUtil {
 			.childSectors(childSectors)
 			.build();
 	}
+
+	public static VisitorDTO convertVisitorModelToDto(Visitor visitor, String sessionId) {
+		if (visitor == null) {
+			return null;
+		}
+		List<Long> selectedSectorIds = visitor.getSelectedSectors() != null ?
+			visitor.getSelectedSectors().stream().map(Sector::getId).collect(Collectors.toList()) : new ArrayList<>();
+		return VisitorDTO.builder()
+			.username(visitor.getUsername())
+			.sectors(selectedSectorIds)
+			.agreedToTerms(visitor.isAgreedToTerms())
+			.sessionId(sessionId)
+			.build();
+	}
 }

@@ -11,8 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 public class VisitorDTO {
 
-	@Min(0)
-	private long id;
 	@NotNull(message = "Username is required")
 	@NotBlank(message = "Username cannot be empty")
 	private String username;
