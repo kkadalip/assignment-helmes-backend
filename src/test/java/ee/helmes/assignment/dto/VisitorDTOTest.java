@@ -11,7 +11,7 @@ class VisitorDTOTest {
 
 	@Test
 	void testInvalidDTOusernameMissing() {
-		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder().id(111).username("").agreedToTerms(true).sectors(getValidMockSectorDTOs()).build();
+		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder().username("").agreedToTerms(true).sectors(getValidMockSectorDTOs()).build();
 		Set<ConstraintViolation<VisitorDTO>> violations = validate(visitorDTOnoSectors);
 		assertFalse(violations.isEmpty());
 		assertEquals(1L, violations.size());
@@ -21,7 +21,7 @@ class VisitorDTOTest {
 
 	@Test
 	void testInvalidDTOusernameEmpty() {
-		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder().id(111).username("").agreedToTerms(true).sectors(getValidMockSectorDTOs()).build();
+		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder().username("").agreedToTerms(true).sectors(getValidMockSectorDTOs()).build();
 		Set<ConstraintViolation<VisitorDTO>> violations = validate(visitorDTOnoSectors);
 		assertFalse(violations.isEmpty());
 		assertEquals(1L, violations.size());
@@ -31,7 +31,7 @@ class VisitorDTOTest {
 
 	@Test
 	void testInvalidDTOagreedToTermsFalse() {
-		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder().id(111).username("aaa").agreedToTerms(false).sectors(getValidMockSectorDTOs()).build();
+		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder().username("aaa").agreedToTerms(false).sectors(getValidMockSectorDTOs()).build();
 		Set<ConstraintViolation<VisitorDTO>> violations = validate(visitorDTOnoSectors);
 		assertFalse(violations.isEmpty());
 		assertEquals(1L, violations.size());
@@ -49,7 +49,7 @@ class VisitorDTOTest {
 
 	@Test
 	void testInvalidDTOnoSectors() {
-		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder().id(111).username("aaa").agreedToTerms(true).sectors(Collections.emptyList()).build();
+		VisitorDTO visitorDTOnoSectors = VisitorDTO.builder().username("aaa").agreedToTerms(true).sectors(Collections.emptyList()).build();
 		final Set<ConstraintViolation<VisitorDTO>> violations = Validation.buildDefaultValidatorFactory().getValidator().validate(visitorDTOnoSectors);
 		assertFalse(violations.isEmpty());
 		assertEquals(1L, violations.size());

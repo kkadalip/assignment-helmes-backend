@@ -12,21 +12,7 @@
 ### 2. Navigate to project root (eg via command prompt)
     (example) $ cd C:\Users\username\workspace\assignment-helmes-backend
 
-### 3. Run PostgreSQL database (eg via Docker)
-
-    initial setup and run command:
-    docker run --name assignmentdb-postgres -p 5432:5432 -e POSTGRES_DB=assignmentdb -e POSTGRES_PASSWORD=mysecretpassword -d postgres
-    
-    if already exists then:
-    docker start assignmentdb-postgres
-    
-    to stop it:
-    docker stop assignmentdb-postgres
-    
-    to remove it:
-    docker rm assignmentdb-postgres
-
-### 4. Build and run the application
+### 3. Build and run the application
 ##### [OPTION 1] Build and run application AND SonarQube server using Docker-compose
     ($ docker-compose down)
     $ docker-compose up
@@ -51,3 +37,22 @@
 ##### [OPTION 4] Run in IDE
      Run Application.java (create run configuration for it if necessary). 
      Open http://localhost:8090/ or http://localhost:8090/api/sectors etc
+
+
+### Analyze code quality via SonarQube (using Docker)
+##### 1. Running Sonarqube server locally (if not already running via docker-compose):
+    $ docker pull sonarqube
+    $ docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
+    If it already exists then:
+    $ docker start sonarqube
+Open http://localhost:9000/ (username: admin password: admin)
+##### 2. Running tests for test coverage (for SonarQube):
+	$ gradlew test
+##### 3. Analyzing project code
+    Building and uploading project code analysis to local SonarQube server: 
+    Open new command prompt window in project root eg:
+    $ cd C:\Users\username\workspace\assignment-helmes-backend
+    $ gradlew sonarqube
+    
+    For custom host url and port: 
+    $ gradlew -Dsonar.host.url=http://localhost:9000 sonarqube
