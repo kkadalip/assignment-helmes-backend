@@ -26,19 +26,19 @@ class IntegrationTests {
 	private MockMvc mockMvc;
 
 	@Autowired
-	ObjectMapper objectMapper;
+	private ObjectMapper objectMapper;
 
-//	@Test
-//	void getQueryWorks() throws Exception {
-//		ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/api/sectors")
-//			.contentType(MediaType.APPLICATION_JSON))
-//			.andExpect(status().isOk());
-//		MvcResult result = resultActions.andReturn();
-//		List<SectorDTO> actual = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<>() {
-//		});
-//		assertNotNull(actual);
-//		assertEquals(3, actual.size());
-//		assertEquals(1, actual.get(0).getId());
-//		assertEquals("sector.manufacturing", actual.get(0).getName());
-//	}
+	@Test
+	void getQueryWorks() throws Exception {
+		ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/api/sectors")
+			.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk());
+		MvcResult result = resultActions.andReturn();
+		List<SectorDTO> actual = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<>() {
+		});
+		assertNotNull(actual);
+		assertEquals(3, actual.size());
+		assertEquals(1, actual.get(0).getId());
+		assertEquals("sector.manufacturing", actual.get(0).getName());
+	}
 }
